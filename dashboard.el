@@ -43,13 +43,13 @@
     (define-key map (kbd "RET") 'dashboard-return)
     (define-key map (kbd "g") #'dashboard-refresh-buffer)
     (define-key map (kbd "}") #'dashboard-next-section)
+    (define-key map [mouse-1] 'widget-button-click)
     (define-key map (kbd "{") #'dashboard-previous-section)
     map)
   "Keymap for dashboard mode.")
 
-(if (display-graphic-p)
-    (define-key dashboard-mode-map [down-mouse-1] 'widget-button-click)
-  (define-key dashboard-mode-map [down-mouse-1] nil))
+(unless (display-graphic-p)
+    (define-key dashboard-mode-map [down-mouse-1] nil))
 
 (defcustom dashboard-after-initialize-hook nil
   "Hook that is run after dashboard buffer is initialized."
